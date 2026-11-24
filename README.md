@@ -95,3 +95,7 @@ contact-form messages. It needs the backend to be running.
 
  Currently in Development
 Developed as a portfolio project and real-world solution for Veli Child Academy.
+
+# Author
+
+Designed and developed by **Siphesihle (Gift) Dlomo** ([@Veja79](https://github.com/Veja79)).
