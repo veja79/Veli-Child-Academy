@@ -34,6 +34,18 @@ This project is being developed to provide an online presence for Veli Child Aca
 # Database
 - MySQL
 
+# Running the frontend
+
+```bash
+cd frontend
+npm install
+npm run dev        # http://localhost:5173
+npm run build      # type-check and production build
+```
+
+School details (phone, address, programmes, about text) live in `frontend/src/content/school.ts`.
+Until the backend is running, the Announcements page shows sample data. In development, `/api` calls are proxied to `http://localhost:8080`.
+
 # Project Status
 
  Currently in Development
