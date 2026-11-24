@@ -49,6 +49,9 @@ export default function Footer() {
       </div>
       <div className="container footer__bottom">
         <p>© {year} {school.name}. All rights reserved. · <Link to="/privacy">Privacy policy</Link></p>
+        <p className="footer__credit">
+          Website by <a href="https://github.com/Veja79" target="_blank" rel="noreferrer">Siphesihle Dlomo</a>
+        </p>
       </div>
     </footer>
   );
