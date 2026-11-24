@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react';
+import { Link } from 'react-router-dom';
 import PageHero from '../components/PageHero';
 import { sendContactMessage, type ContactMessage } from '../api/announcements';
 import { school, telHref } from '../content/school';
@@ -6,6 +7,15 @@ import { school, telHref } from '../content/school';
 const empty: ContactMessage = { name: '', email: '', phone: '', subject: 'Registration', message: '', consent: false };
 
 type Status = 'idle' | 'sending' | 'sent' | 'error';
+
+/** Until the backend is live, messages go by WhatsApp or email instead. */
+function messageText(f: ContactMessage) {
+  const lines = [`Hello ${school.name}, my name is ${f.name}.`, `Subject: ${f.subject}`, '', f.message.trim(), '', `Email: ${f.email}`];
+  if (f.phone) lines.push(`Phone: ${f.phone}`);
+  return lines.join('\n');
+}
+
+const whatsappNumber = '27' + school.phones[0].replace(/\s/g, '').replace(/^0/, '');
 
 export default function Contact() {
   const [form, setForm] = useState<ContactMessage>(empty);
@@ -69,7 +79,7 @@ export default function Contact() {
               <input type="checkbox" required checked={form.consent} onChange={(e) => update('consent', e.target.checked)} />
               <span>
                 I agree that {school.name} may use these details to respond to my enquiry, in line with the
-                Protection of Personal Information Act (POPIA). *
+                Protection of Personal Information Act (POPIA). See our <Link to="/privacy">privacy policy</Link>. *
               </span>
             </label>
 
@@ -78,9 +88,21 @@ export default function Contact() {
             </button>
             {status === 'sent' && <p className="notice notice--ok" role="status">Thank you. We'll be in touch soon.</p>}
             {status === 'error' && (
-              <p className="notice notice--error" role="alert">
-                Sorry, the message couldn't be sent. Please call us on {school.phones[0]}{school.email ? ` or email ${school.email}` : ''}.
-              </p>
+              <div className="notice notice--info" role="status">
+                <p>
+                  <strong>Almost done.</strong> Tap below to send your message to the school, or call us on {school.phones[0]}.
+                </p>
+                <div className="fallback">
+                  <a className="btn btn--whatsapp" href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(messageText(form))}`} target="_blank" rel="noreferrer">
+                    Send on WhatsApp
+                  </a>
+                  {school.email && (
+                    <a className="btn btn--outline" href={`mailto:${school.email}?subject=${encodeURIComponent(form.subject + ' enquiry')}&body=${encodeURIComponent(messageText(form))}`}>
+                      Send by email
+                    </a>
+                  )}
+                </div>
+              </div>
             )}
           </form>
 

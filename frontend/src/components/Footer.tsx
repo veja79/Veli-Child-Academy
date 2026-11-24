@@ -48,7 +48,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="container footer__bottom">
-        <p>© {year} {school.name}. All rights reserved.</p>
+        <p>© {year} {school.name}. All rights reserved. · <Link to="/privacy">Privacy policy</Link></p>
       </div>
     </footer>
   );
