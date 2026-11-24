@@ -13,23 +13,23 @@ public final class AnnouncementDtos {
     /** Shape returned to the public site. Matches frontend/src/types/announcement.ts */
     public record PublicAnnouncement(
             Long id, String title, String summary, String body,
-            Category category, LocalDate publishedAt, boolean pinned) {
+            Category category, LocalDate publishedAt, boolean pinned, String imageUrl) {
 
         static PublicAnnouncement from(Announcement a) {
             return new PublicAnnouncement(a.getId(), a.getTitle(), a.getSummary(), a.getBody(),
-                    a.getCategory(), a.getPublishedAt(), a.isPinned());
+                    a.getCategory(), a.getPublishedAt(), a.isPinned(), a.getImageUrl());
         }
     }
 
     /** Shape returned to the admin portal, including drafts and audit dates. */
     public record AdminAnnouncement(
             Long id, String title, String summary, String body,
-            Category category, LocalDate publishedAt, boolean pinned, boolean published,
+            Category category, LocalDate publishedAt, boolean pinned, boolean published, String imageUrl,
             Instant createdAt, Instant updatedAt) {
 
         static AdminAnnouncement from(Announcement a) {
             return new AdminAnnouncement(a.getId(), a.getTitle(), a.getSummary(), a.getBody(),
-                    a.getCategory(), a.getPublishedAt(), a.isPinned(), a.isPublished(),
+                    a.getCategory(), a.getPublishedAt(), a.isPinned(), a.isPublished(), a.getImageUrl(),
                     a.getCreatedAt(), a.getUpdatedAt());
         }
     }
@@ -41,7 +41,8 @@ public final class AnnouncementDtos {
             @NotNull Category category,
             @NotNull LocalDate publishedAt,
             boolean pinned,
-            boolean published) {
+            boolean published,
+            @Size(max = 300) String imageUrl) {
 
         void applyTo(Announcement a) {
             a.setTitle(title.trim());
@@ -51,6 +52,7 @@ public final class AnnouncementDtos {
             a.setPublishedAt(publishedAt);
             a.setPinned(pinned);
             a.setPublished(published);
+            a.setImageUrl(imageUrl == null || imageUrl.isBlank() ? null : imageUrl.trim());
         }
     }
 }

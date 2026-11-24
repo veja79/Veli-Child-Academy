@@ -1,46 +1,64 @@
 /**
  * All school details live here so they can be updated in one place.
- * Anything marked TODO is a placeholder: replace it with the school's real details.
+ * Details come from the school's flyer. Anything marked TODO still needs confirming.
  */
 export const school = {
   name: 'Veli Child Academy',
-  tagline: 'Where little minds grow big',
+  motto: 'Student-centred learning',
+  tagline: 'Building future leaders',
   intro:
-    'A warm, safe and play-based environment where every child is known by name, encouraged to explore and supported to reach their potential.',
+    'A caring foundation phase school in Ivory Park, offering Grade R to Grade 3, with robotics and computer classes and extra lessons for Grades 1 to 12.',
 
-  // TODO: confirm with the school
-  phone: '000 000 0000',
-  whatsapp: '000 000 0000',
-  email: 'info@velichildacademy.co.za',
-  address: ['Street address', 'Suburb', 'City, Postcode'],
-  hours: 'Monday to Friday, 06:30 to 17:30',
-  mapEmbedUrl: '', // paste a Google Maps "Embed a map" URL here
+  phones: ['060 666 2087', '071 646 3498'],
+  email: 'velindukuya29@gmail.com',
+  address: ['7009 Kingdom Street', 'Ivory Park', 'Midrand, 1685'],
+  hours: '', // TODO: e.g. 'Monday to Friday, 07:00 to 17:00'
+  mapEmbedUrl: 'https://www.google.com/maps?q=7009+Kingdom+Street,+Ivory+Park&output=embed',
 
-  // TODO: confirm with the school
   about: {
+    // TODO: replace with the school's own story when available
     story:
-      'Veli Child Academy was founded to give families a place they can trust: a school where children feel at home, learn through play and build the confidence they need for big school.',
+      'Veli Child Academy puts each learner at the centre of their education. We build strong foundations in reading, writing and maths, and open young minds to the world through technology and hands-on experiences.',
     mission:
-      'To provide quality early childhood education in a caring environment that nurtures each child socially, emotionally, physically and academically.',
-    vision: 'Happy, confident children who love learning.',
+      'To give every child a strong foundation phase education in a safe, caring and stimulating environment, preparing them to grow into confident future leaders.',
+    vision: 'Building future leaders, one child at a time.',
     values: [
-      { title: 'Care', text: 'Every child is safe, seen and loved.' },
-      { title: 'Curiosity', text: 'We learn by asking, exploring and playing.' },
-      { title: 'Respect', text: 'For ourselves, each other and our environment.' },
+      { title: 'Student-centred', text: 'Teaching that starts with each child’s needs and interests.' },
+      { title: 'Curiosity', text: 'Excursions and themed days that bring learning to life.' },
+      { title: 'Future-ready', text: 'Robotics and computer skills from an early age.' },
       { title: 'Partnership', text: 'Parents and teachers working together.' },
     ],
   },
 
-  // TODO: confirm age groups and names with the school
-  programmes: [
-    { name: 'Babies', ages: '3 to 18 months', text: 'Gentle routines, sensory play and lots of cuddles.' },
-    { name: 'Toddlers', ages: '18 months to 3 years', text: 'Language, movement and early independence.' },
-    { name: 'Pre-school', ages: '3 to 5 years', text: 'Early literacy, numeracy, art and outdoor play.' },
-    { name: 'Grade R', ages: '5 to 6 years', text: 'School readiness, aligned with the CAPS curriculum.' },
+  grades: [
+    { name: 'Grade R', text: 'Play-based school readiness: early literacy, numeracy and social skills.' },
+    { name: 'Grade 1', text: 'Reading, writing and number foundations in small, supported classes.' },
+    { name: 'Grade 2', text: 'Building fluency in reading and maths, with growing independence.' },
+    { name: 'Grade 3', text: 'Completing the foundation phase, ready for the intermediate phase.' },
+  ],
+
+  extras: [
+    { name: 'Robotics', text: 'Hands-on building and problem solving.', badge: 'New' },
+    { name: 'Computer literacy', text: 'Confident, safe use of computers and the internet.', badge: 'New' },
+    { name: 'Computer numeracy', text: 'Maths skills practised through technology.', badge: 'New' },
+    { name: 'After-school classes', text: 'Extra lessons for Grades 1 to 12 to help improve results.', badge: '' },
+  ],
+
+  /**
+   * Organisations that work with the school. TODO: confirm the full list, how each one
+   * should be described, and that each is happy to be named (and to have its logo shown).
+   */
+  partners: [
+    { name: 'Adopt A Child', text: 'Building futures through education.', logo: '/images/partners/adopt-a-child.png' },
+    { name: 'SHEBBA Media', text: 'Co-presenter of the Ivory Park Family Fun Day.', logo: '' },
+    { name: 'KasieOlympics', text: 'Runs the indigenous games tournament at the Family Fun Day.', logo: '' },
   ],
 
   social: {
-    facebook: '', // TODO: add links, empty ones are hidden
+    facebook: '', // TODO: add links; empty ones are hidden
     instagram: '',
+    whatsapp: '',
   },
 } as const;
+
+export const telHref = (phone: string) => `tel:${phone.replace(/\s/g, '')}`;

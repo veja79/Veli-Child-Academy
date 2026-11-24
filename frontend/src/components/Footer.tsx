@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { school } from '../content/school';
+import { school, telHref } from '../content/school';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -9,24 +9,28 @@ export default function Footer() {
     <footer className="footer">
       <div className="container footer__grid">
         <div>
-          <p className="footer__brand">{school.name}</p>
-          <p>{school.tagline}</p>
+          <img src="/logo.png" alt={school.name} className="footer__logo" width="80" height="82" />
+          <p className="footer__brand">{school.tagline}</p>
         </div>
         <div>
           <p className="footer__heading">Visit us</p>
           {school.address.map((line) => (
             <p key={line}>{line}</p>
           ))}
-          <p>{school.hours}</p>
+          {school.hours && <p>{school.hours}</p>}
         </div>
         <div>
           <p className="footer__heading">Get in touch</p>
-          <p>
-            <a href={`tel:${school.phone.replace(/\s/g, '')}`}>{school.phone}</a>
-          </p>
-          <p>
-            <a href={`mailto:${school.email}`}>{school.email}</a>
-          </p>
+          {school.phones.map((p) => (
+            <p key={p}>
+              <a href={telHref(p)}>{p}</a>
+            </p>
+          ))}
+          {school.email && (
+            <p>
+              <a href={`mailto:${school.email}`}>{school.email}</a>
+            </p>
+          )}
           {socials.map(([name, url]) => (
             <p key={name}>
               <a href={url} target="_blank" rel="noreferrer">
@@ -38,8 +42,9 @@ export default function Footer() {
         <div>
           <p className="footer__heading">Quick links</p>
           <p><Link to="/about">About us</Link></p>
-          <p><Link to="/announcements">Announcements</Link></p>
-          <p><Link to="/contact">Contact &amp; enrolment</Link></p>
+          <p><Link to="/announcements">News &amp; events</Link></p>
+          <p><Link to="/gallery">Gallery</Link></p>
+          <p><Link to="/contact">Contact &amp; registration</Link></p>
         </div>
       </div>
       <div className="container footer__bottom">

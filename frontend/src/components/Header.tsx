@@ -5,7 +5,8 @@ import { school } from '../content/school';
 const links = [
   { to: '/', label: 'Home' },
   { to: '/about', label: 'About' },
-  { to: '/announcements', label: 'Announcements' },
+  { to: '/announcements', label: 'News' },
+  { to: '/gallery', label: 'Gallery' },
   { to: '/contact', label: 'Contact' },
 ];
 
@@ -16,8 +17,11 @@ export default function Header() {
     <header className="header">
       <div className="container header__inner">
         <Link to="/" className="brand" onClick={() => setOpen(false)}>
-          <span className="brand__mark" aria-hidden="true">VC</span>
-          <span className="brand__name">{school.name}</span>
+          <img src="/logo.png" alt="" className="brand__logo" width="52" height="53" />
+          <span className="brand__text">
+            <span className="brand__name">{school.name}</span>
+            <span className="brand__motto">{school.motto}</span>
+          </span>
         </Link>
 
         <button
@@ -45,7 +49,7 @@ export default function Header() {
             </NavLink>
           ))}
           <Link to="/contact" className="btn btn--sun nav__cta" onClick={() => setOpen(false)}>
-            Enrol now
+            Register now
           </Link>
         </nav>
       </div>
