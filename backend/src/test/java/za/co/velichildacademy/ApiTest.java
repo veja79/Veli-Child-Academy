@@ -37,7 +37,7 @@ class ApiTest {
         mvc.perform(get("/api/announcements"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].pinned").value(true))
-                .andExpect(jsonPath("$[*].title").value(hasItem("2027 enrolments are open")));
+                .andExpect(jsonPath("$[*].title").value(hasItem("Registrations open: Grade R to Grade 3")));
     }
 
     @Test

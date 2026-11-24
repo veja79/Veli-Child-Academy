@@ -40,6 +40,10 @@ public class Announcement {
     @Column(nullable = false)
     private boolean pinned;
 
+    /** Optional poster or photo URL */
+    @Column(name = "image_url", length = 300)
+    private String imageUrl;
+
     /** false = draft, hidden from the public site */
     @Column(nullable = false)
     private boolean published = true;
@@ -65,6 +69,8 @@ public class Announcement {
     public void setPublishedAt(LocalDate publishedAt) { this.publishedAt = publishedAt; }
     public boolean isPinned() { return pinned; }
     public void setPinned(boolean pinned) { this.pinned = pinned; }
+    public String getImageUrl() { return imageUrl; }
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
     public boolean isPublished() { return published; }
     public void setPublished(boolean published) { this.published = published; }
     public Instant getCreatedAt() { return createdAt; }

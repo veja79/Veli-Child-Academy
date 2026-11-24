@@ -1,9 +1,9 @@
 import { useState, type FormEvent } from 'react';
 import PageHero from '../components/PageHero';
 import { sendContactMessage, type ContactMessage } from '../api/announcements';
-import { school } from '../content/school';
+import { school, telHref } from '../content/school';
 
-const empty: ContactMessage = { name: '', email: '', phone: '', subject: 'Enrolment', message: '', consent: false };
+const empty: ContactMessage = { name: '', email: '', phone: '', subject: 'Registration', message: '', consent: false };
 
 type Status = 'idle' | 'sending' | 'sent' | 'error';
 
@@ -29,8 +29,8 @@ export default function Contact() {
 
   return (
     <>
-      <PageHero title="Contact & enrolment">
-        Questions about enrolment, fees or a visit? Send us a message and we'll get back to you.
+      <PageHero title="Contact & registration">
+        Questions about registration, fees or after-school classes? Send us a message and we'll get back to you.
       </PageHero>
 
       <section className="section">
@@ -53,9 +53,11 @@ export default function Contact() {
             <label>
               What is it about? *
               <select value={form.subject} onChange={(e) => update('subject', e.target.value)}>
-                <option>Enrolment</option>
-                <option>Book a visit</option>
+                <option>Registration</option>
+                <option>After-school classes</option>
+                <option>Robotics &amp; computer classes</option>
                 <option>Fees</option>
+                <option>Donations</option>
                 <option>General question</option>
               </select>
             </label>
@@ -77,7 +79,7 @@ export default function Contact() {
             {status === 'sent' && <p className="notice notice--ok" role="status">Thank you. We'll be in touch soon.</p>}
             {status === 'error' && (
               <p className="notice notice--error" role="alert">
-                Sorry, the message couldn't be sent. Please call us on {school.phone} or email {school.email}.
+                Sorry, the message couldn't be sent. Please call us on {school.phones[0]}{school.email ? ` or email ${school.email}` : ''}.
               </p>
             )}
           </form>
@@ -85,10 +87,12 @@ export default function Contact() {
           <aside className="stack">
             <div className="card">
               <h2>Call or visit</h2>
-              <p><a href={`tel:${school.phone.replace(/\s/g, '')}`}>{school.phone}</a></p>
-              <p><a href={`mailto:${school.email}`}>{school.email}</a></p>
+              {school.phones.map((p) => (
+                <p key={p}><a href={telHref(p)}>{p}</a></p>
+              ))}
+              {school.email && <p><a href={`mailto:${school.email}`}>{school.email}</a></p>}
               <p>{school.address.join(', ')}</p>
-              <p>{school.hours}</p>
+              {school.hours && <p>{school.hours}</p>}
             </div>
             {school.mapEmbedUrl && (
               <iframe
