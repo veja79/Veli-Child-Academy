@@ -28,8 +28,10 @@ On the backend service → **Variables**, add:
 | `ADMIN_PASSWORD` | a strong password, 10+ characters |
 | `CORS_ORIGINS` | `https://veli-child-academy.netlify.app` (add the .co.za address later, comma-separated) |
 
-Deploy. The first start creates the tables and the admin account. After that you can delete
-`ADMIN_PASSWORD` from the variables; the account stays.
+Deploy. The first start creates the tables and the admin account.
+
+The login always follows these two variables: change `ADMIN_PASSWORD` and redeploy to reset a forgotten
+password. If you delete `ADMIN_PASSWORD`, the account stays with its last password.
 
 ## 3. Give it a web address
 
