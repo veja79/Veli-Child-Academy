@@ -76,6 +76,16 @@ Flyway creates the tables on first start (`backend/src/main/resources/db/migrati
 
 Admin requests send `Authorization: Bearer <token>`.
 
+# Going live
+
+The public website can run on its own, without the backend: announcements come from the built-in list in `frontend/src/api/announcements.ts`, and the contact form offers WhatsApp or email.
+
+**Netlify (recommended, free):** Add new site → Import from GitHub → pick this repo. `netlify.toml` sets the folder and build command. Then add the school's domain under Domain management.
+
+**Vercel:** Import the repo and set Root Directory to `frontend` (`frontend/vercel.json` handles the rest). Vercel's free plan is for non-commercial use.
+
+When the backend is hosted, set `VITE_API_BASE` to its URL (for example `https://api.example.co.za/api`) in the host's environment variables and redeploy.
+
 # Project Status
 
  Currently in Development

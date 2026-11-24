@@ -200,6 +200,8 @@ a { color: var(--purple); }
 .notice { padding: 0.8rem 1rem; border-radius: 12px; margin: 0; }
 .notice--ok { background: #def5e8; color: #1c5a39; }
 .notice--error { background: #fde2d8; color: #8a2d12; }
+.notice--info { background: var(--tint); color: var(--ink); border: 1px solid var(--line); }
+.notice p { margin-bottom: 0.4rem; }
 .map { width: 100%; height: 300px; border: 0; border-radius: var(--radius); }
 
 /* Footer */
@@ -211,3 +213,11 @@ a { color: var(--purple); }
 .footer__heading { font-weight: 800; color: #fff; }
 .footer__grid p { margin: 0 0 0.35rem; }
 .footer__bottom { border-top: 1px solid rgba(255, 255, 255, 0.15); margin-top: 2rem; padding-top: 1rem; font-size: 0.9rem; }
+
+/* Long-form text (privacy policy) */
+.prose { max-width: 760px; }
+.prose h2 { font-size: 1.5rem; margin-top: 2rem; }
+.muted { color: var(--muted); }
+.fallback { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.6rem; }
+.btn--whatsapp { background: #1fa855; color: #fff; }
+.btn--outline { border-color: var(--navy); color: var(--navy); background: #fff; }
