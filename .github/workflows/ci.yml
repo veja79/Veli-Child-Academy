@@ -19,6 +19,8 @@ jobs:
           cache: maven
       - name: Build and test
         run: mvn -B verify
+      - name: Docker image builds
+        run: docker build -t veli-api .
 
   frontend:
     runs-on: ubuntu-latest
