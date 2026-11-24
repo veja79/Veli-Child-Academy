@@ -7,13 +7,13 @@ export const school = {
   motto: 'Student-centred learning',
   tagline: 'Building future leaders',
   intro:
-    'A caring foundation phase school in Ivory Park, offering Grade R to Grade 3, with robotics and computer classes and extra lessons for Grades 1 to 12.',
+    'A caring foundation phase school in Ivory Park, offering Grade R to Grade 3, with robotics, computer classes, swimming lessons and extra lessons for Grades 1 to 12.',
 
   phones: ['060 666 2087', '071 646 3498'],
   email: 'velindukuya29@gmail.com',
-  address: ['7009 Kingdom Street', 'Ivory Park', 'Midrand, 1685'],
+  address: ['12498 Khoza Street', 'Ivory Park', 'Midrand, 1685'],
   hours: '', // TODO: e.g. 'Monday to Friday, 07:00 to 17:00'
-  mapEmbedUrl: 'https://www.google.com/maps?q=7009+Kingdom+Street,+Ivory+Park&output=embed',
+  mapEmbedUrl: 'https://www.google.com/maps?q=12498+Khoza+Street,+Ivory+Park,+Midrand&output=embed',
 
   about: {
     // TODO: replace with the school's own story when available
@@ -41,6 +41,7 @@ export const school = {
     { name: 'Robotics', text: 'Hands-on building and problem solving.', badge: 'New' },
     { name: 'Computer literacy', text: 'Confident, safe use of computers and the internet.', badge: 'New' },
     { name: 'Computer numeracy', text: 'Maths skills practised through technology.', badge: 'New' },
+    { name: 'Swimming lessons', text: 'Learning to swim with confidence and water safety.', badge: 'New' },
     { name: 'After-school classes', text: 'Extra lessons for Grades 1 to 12 to help improve results.', badge: '' },
   ],
 
