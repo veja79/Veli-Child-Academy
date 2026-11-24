@@ -46,6 +46,36 @@ npm run build      # type-check and production build
 School details (phone, address, programmes, about text) live in `frontend/src/content/school.ts`.
 Until the backend is running, the Announcements page shows sample data. In development, `/api` calls are proxied to `http://localhost:8080`.
 
+# Running the backend
+
+Needs Java 21, Maven and Docker (for MySQL).
+
+```bash
+docker compose up -d            # starts MySQL on port 3306
+cd backend
+export JWT_SECRET="$(openssl rand -base64 48)"
+export ADMIN_USERNAME=admin ADMIN_PASSWORD='choose-a-strong-password'
+mvn spring-boot:run             # http://localhost:8080
+mvn verify                      # run the tests (uses an in-memory H2 database)
+```
+
+Flyway creates the tables on first start (`backend/src/main/resources/db/migration`). The first admin account is created from `ADMIN_USERNAME` / `ADMIN_PASSWORD` only if no admin exists. See `backend/.env.example` for all settings.
+
+## API
+
+| Method | Path | Access |
+| --- | --- | --- |
+| GET | `/api/announcements`, `/api/announcements/{id}` | Public (published, not future-dated) |
+| POST | `/api/contact` | Public (POPIA consent required) |
+| POST | `/api/auth/login` | Public, returns `{ token, expiresAt }` |
+| GET | `/api/admin/me` | Admin |
+| GET, POST | `/api/admin/announcements` | Admin |
+| GET, PUT, DELETE | `/api/admin/announcements/{id}` | Admin |
+| GET | `/api/admin/messages`, `/api/admin/messages/unread-count` | Admin |
+| PATCH, DELETE | `/api/admin/messages/{id}` | Admin (`{ "read": true }` to mark read) |
+
+Admin requests send `Authorization: Bearer <token>`.
+
 # Project Status
 
  Currently in Development
