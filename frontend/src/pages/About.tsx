@@ -15,7 +15,7 @@ export default function About() {
             <h2>Who we are</h2>
             <p className="lead">{about.story}</p>
             <p>
-              We offer Grade R to Grade 3, robotics and computer classes, and after-school extra classes for
+              We offer Grade R to Grade 3, robotics and computer classes, swimming lessons, and after-school extra classes for
               Grades 1 to 12, at {school.address.slice(0, 2).join(', ')}.
             </p>
           </div>

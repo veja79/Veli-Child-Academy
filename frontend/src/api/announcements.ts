@@ -11,7 +11,7 @@ const SAMPLE: Announcement[] = [
     id: 1,
     title: 'Registrations open: Grade R to Grade 3',
     summary: 'Grade R, 1, 2 and 3 registrations are now open. Call 060 666 2087 to register.',
-    body: 'Give your child a better future. Registrations are open for Grade R, Grade 1, Grade 2 and Grade 3 at 7009 Kingdom Street, Ivory Park. Call 060 666 2087 or 071 646 3498, or send us a message through the contact page.',
+    body: 'Give your child a better future. Registrations are open for Grade R, Grade 1, Grade 2 and Grade 3 at 12498 Khoza Street, Ivory Park. Call 060 666 2087 or 071 646 3498, or send us a message through the contact page.',
     category: 'ANNOUNCEMENT',
     publishedAt: '2026-11-24',
     pinned: true,
