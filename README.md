@@ -84,9 +84,18 @@ The public website can run on its own, without the backend: announcements come f
 
 **Vercel:** Import the repo and set Root Directory to `frontend` (`frontend/vercel.json` handles the rest). Vercel's free plan is for non-commercial use.
 
-When the backend is hosted, set `VITE_API_BASE` to its URL (for example `https://api.example.co.za/api`) in the host's environment variables and redeploy.
+Backend hosting steps: [docs/DEPLOY-BACKEND.md](docs/DEPLOY-BACKEND.md). When the backend is hosted, set `VITE_API_BASE` to its URL (for example `https://api.example.co.za/api`) in the host's environment variables and redeploy.
+
+# Admin portal
+
+Staff log in at `/admin` to post news (with drafts, pinning, scheduled dates and posters) and to read
+contact-form messages. It needs the backend to be running.
 
 # Project Status
 
  Currently in Development
 Developed as a portfolio project and real-world solution for Veli Child Academy.
+
+# Author
+
+Designed and developed by **Siphesihle (Gift) Dlomo** ([@Veja79](https://github.com/Veja79)).
