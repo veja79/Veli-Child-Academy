@@ -3,8 +3,10 @@ import AnnouncementCard from '../components/AnnouncementCard';
 import { heroPhoto, highlights, welcomePhoto } from '../content/gallery';
 import { school, telHref } from '../content/school';
 import { useAnnouncements } from '../hooks';
+import { usePageTitle } from '../components/PageHero';
 
 export default function Home() {
+  usePageTitle();
   const { items, loading } = useAnnouncements();
   const latest = items.slice(0, 3);
 
