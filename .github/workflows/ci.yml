@@ -36,3 +36,10 @@ jobs:
         run: npm install --no-audit --no-fund
       - name: Type-check and build
         run: npm run build
+      - name: Check site address and SEO files
+        run: |
+          grep -q "veli-child-academy.pages.dev" dist/index.html
+          ! grep -q "%VITE_SITE_URL%" dist/index.html
+          grep -q "<loc>https://veli-child-academy.pages.dev/register</loc>" dist/sitemap.xml
+          grep -q "Sitemap: https://veli-child-academy.pages.dev/sitemap.xml" dist/robots.txt
+          grep -q "up.railway.app/api" dist/assets/*.js

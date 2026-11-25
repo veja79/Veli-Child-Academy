@@ -1,13 +1,53 @@
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// During development, /api calls are forwarded to the Spring Boot backend.
-export default defineConfig({
-  plugins: [react()],
-  server: {
-    port: 5173,
-    proxy: {
-      '/api': 'http://localhost:8080',
+/** Public pages listed in sitemap.xml, with their priority. */
+const PAGES: [path: string, priority: string][] = [
+  ['/', '1.0'],
+  ['/register', '0.9'],
+  ['/contact', '0.9'],
+  ['/about', '0.8'],
+  ['/announcements', '0.8'],
+  ['/gallery', '0.6'],
+  ['/privacy', '0.3'],
+];
+
+/** Writes sitemap.xml and robots.txt using VITE_SITE_URL, so the site address lives in one place. */
+function seoFiles(siteUrl: string): Plugin {
+  const base = siteUrl.replace(/\/$/, '');
+  return {
+    name: 'veli-seo-files',
+    apply: 'build',
+    generateBundle() {
+      const today = new Date().toISOString().slice(0, 10);
+      const urls = PAGES.map(
+        ([path, priority]) => `  <url><loc>${base}${path}</loc><lastmod>${today}</lastmod><priority>${priority}</priority></url>`,
+      ).join('\n');
+      this.emitFile({
+        type: 'asset',
+        fileName: 'sitemap.xml',
+        source: `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`,
+      });
+      this.emitFile({
+        type: 'asset',
+        fileName: 'robots.txt',
+        source: `User-agent: *\nAllow: /\nDisallow: /admin\n\nSitemap: ${base}/sitemap.xml\n`,
+      });
     },
-  },
+  };
+}
+
+// During development, /api calls are forwarded to the Spring Boot backend.
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, '.', 'VITE_');
+  const siteUrl = env.VITE_SITE_URL || 'http://localhost:5173';
+  return {
+    plugins: [react(), seoFiles(siteUrl)],
+    server: {
+      port: 5173,
+      proxy: {
+        '/api': 'http://localhost:8080',
+      },
+    },
+  };
 });

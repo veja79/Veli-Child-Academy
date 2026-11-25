@@ -81,13 +81,22 @@ Admin requests send `Authorization: Bearer <token>`.
 
 # Going live
 
-The public website can run on its own, without the backend: announcements come from the built-in list in `frontend/src/api/announcements.ts`, and the contact form offers WhatsApp or email.
+**Website: Cloudflare Pages (free).** Workers & Pages → Create → Pages → Connect to Git → this repo, with
+root directory `frontend`, build command `npm run build` and output directory `dist`.
+Every merge into `main` goes live automatically.
 
-**Netlify (recommended, free):** Add new site → Import from GitHub → pick this repo. `netlify.toml` sets the folder and build command. Then add the school's domain under Domain management.
+**Site address and backend address** live in `frontend/.env.production`:
 
-**Vercel:** Import the repo and set Root Directory to `frontend` (`frontend/vercel.json` handles the rest). Vercel's free plan is for non-commercial use.
+- `VITE_SITE_URL`: the public address, used for the canonical link, share previews, `sitemap.xml` and `robots.txt`
+  (generated at build time). Change it when the .co.za domain is connected.
+- `VITE_API_BASE`: the backend on Railway. If the website moves to a new address, add it to `CORS_ORIGINS` in Railway.
 
-Backend hosting steps: [docs/DEPLOY-BACKEND.md](docs/DEPLOY-BACKEND.md). When the backend is hosted, set `VITE_API_BASE` to its URL (for example `https://api.example.co.za/api`) in the host's environment variables and redeploy.
+The website still works if the backend is down: news falls back to the built-in list in
+`frontend/src/api/announcements.ts`, and the contact and application forms offer WhatsApp instead.
+
+`netlify.toml` and `frontend/vercel.json` are kept so the site can also be deployed to those hosts.
+
+Backend hosting steps: [docs/DEPLOY-BACKEND.md](docs/DEPLOY-BACKEND.md).
 
 # Admin portal
 
