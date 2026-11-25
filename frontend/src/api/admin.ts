@@ -36,6 +36,26 @@ export interface InboxMessage {
   createdAt: string;
 }
 
+export type ApplicationStatus = 'NEW' | 'CONTACTED' | 'ACCEPTED' | 'WAITLIST' | 'DECLINED';
+
+export interface AdminApplication {
+  id: number;
+  childFirstName: string;
+  childLastName: string;
+  childBirthDate: string;
+  grade: string;
+  startYear: number;
+  previousSchool: string | null;
+  parentName: string;
+  relationship: string;
+  phone: string;
+  email: string | null;
+  address: string | null;
+  notes: string | null;
+  status: ApplicationStatus;
+  createdAt: string;
+}
+
 /** Thrown when the session has expired or the token was rejected. */
 export class UnauthorizedError extends Error {}
 
@@ -129,4 +149,10 @@ export const adminApi = {
   setRead: (s: Session, id: number, read: boolean) =>
     request<InboxMessage>(s, `/admin/messages/${id}`, { method: 'PATCH', body: JSON.stringify({ read }) }),
   deleteMessage: (s: Session, id: number) => request<void>(s, `/admin/messages/${id}`, { method: 'DELETE' }),
+
+  listApplications: (s: Session) => request<AdminApplication[]>(s, '/admin/applications'),
+  newApplicationCount: (s: Session) => request<{ new: number }>(s, '/admin/applications/new-count'),
+  setApplicationStatus: (s: Session, id: number, status: ApplicationStatus) =>
+    request<AdminApplication>(s, `/admin/applications/${id}`, { method: 'PATCH', body: JSON.stringify({ status }) }),
+  deleteApplication: (s: Session, id: number) => request<void>(s, `/admin/applications/${id}`, { method: 'DELETE' }),
 };

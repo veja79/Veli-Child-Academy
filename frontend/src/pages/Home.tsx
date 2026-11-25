@@ -20,7 +20,7 @@ export default function Home() {
           <h1>{school.tagline}</h1>
           <p className="lead">{school.intro}</p>
           <div className="hero__actions">
-            <Link to="/contact" className="btn btn--sun">Register your child</Link>
+            <Link to="/register" className="btn btn--sun">Register your child</Link>
             <a href={telHref(school.phones[0])} className="btn btn--light">Call {school.phones[0]}</a>
           </div>
         </div>

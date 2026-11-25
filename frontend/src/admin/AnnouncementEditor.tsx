@@ -76,12 +76,12 @@ export default function AnnouncementEditor() {
               {fieldError('title')}
             </label>
             <label>
-              Short summary * <span className="hint">Shown on the home page ({form.summary.length}/300)</span>
+              <span>Short summary * <span className="hint">Shown on the home page ({form.summary.length}/300)</span></span>
               <input value={form.summary} maxLength={300} required onChange={(e) => set('summary', e.target.value)} />
               {fieldError('summary')}
             </label>
             <label>
-              Full text * <span className="hint">Shown on the News page</span>
+              <span>Full text * <span className="hint">Shown on the News page</span></span>
               <textarea rows={7} value={form.body} maxLength={5000} required onChange={(e) => set('body', e.target.value)} />
               {fieldError('body')}
             </label>
@@ -95,13 +95,13 @@ export default function AnnouncementEditor() {
                 </select>
               </label>
               <label>
-                Date <span className="hint">Future dates stay hidden until then</span>
+                <span>Date <span className="hint">Future dates stay hidden until then</span></span>
                 <input type="date" value={form.publishedAt} required onChange={(e) => set('publishedAt', e.target.value)} />
                 {fieldError('publishedAt')}
               </label>
             </div>
             <label>
-              Picture or poster <span className="hint">Optional. Pick a website photo or paste an image link</span>
+              <span>Picture or poster <span className="hint">Optional. Pick a website photo or paste an image link</span></span>
               <input list="site-images" value={form.imageUrl ?? ''} placeholder="/images/…" onChange={(e) => set('imageUrl', e.target.value)} />
               <datalist id="site-images">
                 {siteImages.map((src) => <option key={src} value={src} />)}

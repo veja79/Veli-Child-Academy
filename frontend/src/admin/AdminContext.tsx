@@ -9,6 +9,8 @@ interface AdminState {
   run: <T>(fn: (s: Session) => Promise<T>) => Promise<T>;
   /** Number of unread contact messages, shown as a badge. */
   unread: number;
+  /** Number of applications still marked New. */
+  newApplications: number;
   refreshUnread: () => void;
 }
 
@@ -40,12 +42,16 @@ export function AdminProvider({ children }: { children: ReactNode }) {
   );
 
   const [unread, setUnread] = useState(0);
+  const [newApplications, setNewApplications] = useState(0);
   const refreshUnread = useCallback(() => {
     if (!session) return;
     adminApi.unreadCount(session).then((r) => setUnread(r.unread)).catch(() => {});
+    adminApi.newApplicationCount(session).then((r) => setNewApplications(r.new)).catch(() => {});
   }, [session]);
 
-  return <Ctx.Provider value={{ session, login, logout, run, unread, refreshUnread }}>{children}</Ctx.Provider>;
+  return (
+    <Ctx.Provider value={{ session, login, logout, run, unread, newApplications, refreshUnread }}>{children}</Ctx.Provider>
+  );
 }
 
 export function useAdmin() {

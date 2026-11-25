@@ -44,7 +44,8 @@ export default function Footer() {
           <p><Link to="/about">About us</Link></p>
           <p><Link to="/announcements">News &amp; events</Link></p>
           <p><Link to="/gallery">Gallery</Link></p>
-          <p><Link to="/contact">Contact &amp; registration</Link></p>
+          <p><Link to="/register">Register your child</Link></p>
+          <p><Link to="/contact">Contact us</Link></p>
         </div>
       </div>
       <div className="container footer__bottom">

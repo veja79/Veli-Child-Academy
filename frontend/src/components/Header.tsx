@@ -48,7 +48,7 @@ export default function Header() {
               {l.label}
             </NavLink>
           ))}
-          <Link to="/contact" className="btn btn--sun nav__cta" onClick={() => setOpen(false)}>
+          <Link to="/register" className="btn btn--sun nav__cta" onClick={() => setOpen(false)}>
             Register now
           </Link>
         </nav>

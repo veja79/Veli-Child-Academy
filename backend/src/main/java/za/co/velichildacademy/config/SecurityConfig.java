@@ -51,7 +51,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/error").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/announcements", "/api/announcements/*").permitAll()
-                .requestMatchers(HttpMethod.POST, "/api/contact", "/api/auth/login").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/contact", "/api/applications", "/api/auth/login").permitAll()
                 .requestMatchers("/api/admin/**").hasAuthority("SCOPE_ADMIN")
                 .anyRequest().denyAll())
             .oauth2ResourceServer(o -> o.jwt(Customizer.withDefaults()));
