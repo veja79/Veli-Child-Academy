@@ -5,7 +5,7 @@ import AdminLayout from './AdminLayout';
 import { formatDateTime, useAdmin } from './AdminContext';
 
 export default function Dashboard() {
-  const { run, session } = useAdmin();
+  const { run, session, newApplications } = useAdmin();
   const [posts, setPosts] = useState<AdminAnnouncement[] | null>(null);
   const [messages, setMessages] = useState<InboxMessage[] | null>(null);
   const [error, setError] = useState('');
@@ -26,7 +26,11 @@ export default function Dashboard() {
   return (
     <AdminLayout title={`Welcome, ${session?.username ?? ''}`}>
       {error && <p className="notice notice--error">{error}</p>}
-      <div className="grid grid--3 admin-stats">
+      <div className="grid grid--4 admin-stats">
+        <Link to="/admin/applications" className="card stat">
+          <span className="stat__value">{newApplications}</span>
+          <span className="stat__label">New applications</span>
+        </Link>
         <Link to="/admin/messages" className="card stat">
           <span className="stat__value">{messages ? unread.length : '…'}</span>
           <span className="stat__label">Unread messages</span>

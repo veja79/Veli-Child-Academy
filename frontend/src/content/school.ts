@@ -63,3 +63,23 @@ export const school = {
 } as const;
 
 export const telHref = (phone: string) => `tel:${phone.replace(/\s/g, '')}`;
+
+/** WhatsApp click-to-chat link for the school's main number, with an optional pre-filled message. */
+export const whatsappHref = (text?: string) =>
+  `https://wa.me/27${school.phones[0].replace(/\D/g, '').replace(/^0/, '')}` +
+  (text ? `?text=${encodeURIComponent(text)}` : '');
+
+/**
+ * Registration details. TODO: confirm the document list with the principal and add fees when available.
+ */
+export const registration = {
+  grades: ['Grade R', 'Grade 1', 'Grade 2', 'Grade 3'],
+  documents: [
+    "Copy of the child's birth certificate",
+    "Copy of the child's Road to Health (clinic) card, for Grade R",
+    "Copies of the parents' or guardians' ID documents",
+    'Proof of residence',
+    'Latest school report, if moving from another school',
+  ],
+  fees: '', // e.g. 'Registration R500 · Monthly fee R1 500'. Empty shows "contact us for fees".
+};

@@ -67,12 +67,15 @@ Flyway creates the tables on first start (`backend/src/main/resources/db/migrati
 | --- | --- | --- |
 | GET | `/api/announcements`, `/api/announcements/{id}` | Public (published, not future-dated) |
 | POST | `/api/contact` | Public (POPIA consent required) |
+| POST | `/api/applications` | Public online application (POPIA consent required) |
 | POST | `/api/auth/login` | Public, returns `{ token, expiresAt }` |
 | GET | `/api/admin/me` | Admin |
 | GET, POST | `/api/admin/announcements` | Admin |
 | GET, PUT, DELETE | `/api/admin/announcements/{id}` | Admin |
 | GET | `/api/admin/messages`, `/api/admin/messages/unread-count` | Admin |
 | PATCH, DELETE | `/api/admin/messages/{id}` | Admin (`{ "read": true }` to mark read) |
+| GET | `/api/admin/applications`, `/api/admin/applications/new-count` | Admin |
+| PATCH, DELETE | `/api/admin/applications/{id}` | Admin (`{ "status": "CONTACTED" }`; NEW, CONTACTED, ACCEPTED, WAITLIST, DECLINED) |
 
 Admin requests send `Authorization: Bearer <token>`.
 
@@ -88,8 +91,8 @@ Backend hosting steps: [docs/DEPLOY-BACKEND.md](docs/DEPLOY-BACKEND.md). When th
 
 # Admin portal
 
-Staff log in at `/admin` to post news (with drafts, pinning, scheduled dates and posters) and to read
-contact-form messages. It needs the backend to be running.
+Staff log in at `/admin` to post news (with drafts, pinning, scheduled dates and posters), follow up
+online applications from the Register page, and read contact-form messages. It needs the backend to be running.
 
 # Project Status
 

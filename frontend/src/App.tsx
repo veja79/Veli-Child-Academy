@@ -15,6 +15,9 @@ import Gallery from './pages/Gallery';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Privacy from './pages/Privacy';
+import Register from './pages/Register';
+import WhatsAppButton from './components/WhatsAppButton';
+import Applications from './admin/Applications';
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -33,6 +36,7 @@ function Public({ children }: { children: ReactNode }) {
       <Header />
       <main id="main">{children}</main>
       <Footer />
+      <WhatsAppButton />
     </>
   );
 }
@@ -46,6 +50,7 @@ export default function App() {
         <Route path="/about" element={<Public><About /></Public>} />
         <Route path="/announcements" element={<Public><Announcements /></Public>} />
         <Route path="/gallery" element={<Public><Gallery /></Public>} />
+        <Route path="/register" element={<Public><Register /></Public>} />
         <Route path="/contact" element={<Public><Contact /></Public>} />
         <Route path="/privacy" element={<Public><Privacy /></Public>} />
 
@@ -55,6 +60,7 @@ export default function App() {
         <Route path="/admin/announcements/new" element={<AnnouncementEditor />} />
         <Route path="/admin/announcements/:id" element={<AnnouncementEditor />} />
         <Route path="/admin/messages" element={<Messages />} />
+        <Route path="/admin/applications" element={<Applications />} />
 
         <Route path="*" element={<Public><NotFound /></Public>} />
       </Routes>

@@ -3,7 +3,7 @@ import { Link, Navigate, NavLink } from 'react-router-dom';
 import { useAdmin } from './AdminContext';
 
 export default function AdminLayout({ title, children }: { title: string; children: ReactNode }) {
-  const { session, logout, unread, refreshUnread } = useAdmin();
+  const { session, logout, unread, newApplications, refreshUnread } = useAdmin();
 
   useEffect(() => {
     document.title = `${title} · Veli admin`;
@@ -27,6 +27,9 @@ export default function AdminLayout({ title, children }: { title: string; childr
         <nav className="admin-nav" aria-label="Admin">
           <NavLink to="/admin" end className={link}>Dashboard</NavLink>
           <NavLink to="/admin/announcements" className={link}>News</NavLink>
+          <NavLink to="/admin/applications" className={link}>
+            Applications {newApplications > 0 && <span className="badge">{newApplications}</span>}
+          </NavLink>
           <NavLink to="/admin/messages" className={link}>
             Messages {unread > 0 && <span className="badge">{unread}</span>}
           </NavLink>
