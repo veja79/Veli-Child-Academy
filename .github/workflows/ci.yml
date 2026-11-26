@@ -38,8 +38,17 @@ jobs:
         run: npm run build
       - name: Check site address and SEO files
         run: |
-          grep -q "veli-child-academy.pages.dev" dist/index.html
+          SITE=https://veli-child-academy-website.sphesihle7910.workers.dev
+          grep -q "$SITE" dist/index.html
           ! grep -q "%VITE_SITE_URL%" dist/index.html
-          grep -q "<loc>https://veli-child-academy.pages.dev/register</loc>" dist/sitemap.xml
-          grep -q "Sitemap: https://veli-child-academy.pages.dev/sitemap.xml" dist/robots.txt
+          grep -q "<loc>$SITE/register</loc>" dist/sitemap.xml
+          grep -q "Sitemap: $SITE/sitemap.xml" dist/robots.txt
           grep -q "up.railway.app/api" dist/assets/*.js
+      - name: Build still correct if the host ignores .env files
+        run: |
+          mv .env.production /tmp/env.production
+          npm run build
+          ! grep -q "%VITE_SITE_URL%" dist/index.html
+          grep -q "workers.dev" dist/index.html
+          grep -q "up.railway.app/api" dist/assets/*.js
+          mv /tmp/env.production .env.production

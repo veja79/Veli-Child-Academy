@@ -1,6 +1,9 @@
 import { defineConfig, loadEnv, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 
+/** Used when VITE_SITE_URL is not set (for example if a host ignores .env files). */
+const DEFAULT_SITE_URL = 'https://veli-child-academy-website.sphesihle7910.workers.dev';
+
 /** Public pages listed in sitemap.xml, with their priority. */
 const PAGES: [path: string, priority: string][] = [
   ['/', '1.0'],
@@ -18,6 +21,11 @@ function seoFiles(siteUrl: string): Plugin {
   return {
     name: 'veli-seo-files',
     apply: 'build',
+    // Fill in %VITE_SITE_URL% ourselves, so it is never left as a placeholder in the built page.
+    transformIndexHtml: {
+      order: 'pre',
+      handler: (html) => html.replaceAll('%VITE_SITE_URL%', base),
+    },
     generateBundle() {
       const today = new Date().toISOString().slice(0, 10);
       const urls = PAGES.map(
@@ -40,7 +48,7 @@ function seoFiles(siteUrl: string): Plugin {
 // During development, /api calls are forwarded to the Spring Boot backend.
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', 'VITE_');
-  const siteUrl = env.VITE_SITE_URL || 'http://localhost:5173';
+  const siteUrl = env.VITE_SITE_URL || (mode === 'development' ? 'http://localhost:5173' : DEFAULT_SITE_URL);
   return {
     plugins: [react(), seoFiles(siteUrl)],
     server: {

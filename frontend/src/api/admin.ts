@@ -1,6 +1,6 @@
 import type { AnnouncementCategory } from '../types/announcement';
+import { API_BASE } from '../config';
 
-const API_BASE = import.meta.env.VITE_API_BASE ?? '/api';
 const TOKEN_KEY = 'veli-admin-token';
 
 export interface Session {
