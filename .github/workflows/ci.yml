@@ -38,7 +38,7 @@ jobs:
         run: npm run build
       - name: Check site address and SEO files
         run: |
-          SITE=https://veli-child-academy-website.sphesihle7910.workers.dev
+          SITE=https://www.velichildacademy.workers.dev
           grep -q "$SITE" dist/index.html
           ! grep -q "%VITE_SITE_URL%" dist/index.html
           grep -q "<loc>$SITE/register</loc>" dist/sitemap.xml
