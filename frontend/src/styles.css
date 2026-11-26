@@ -294,7 +294,7 @@ a { color: var(--purple); }
 .success h2 { color: #1c5a39; }
 
 /* Floating WhatsApp button */
-.wa-float { position: fixed; right: 18px; bottom: 18px; z-index: 60; display: flex; align-items: center; gap: 0.5rem; background: #1fa855; color: #fff; text-decoration: none; font-weight: 800; border-radius: 999px; padding: 0.7rem 1.1rem 0.7rem 0.8rem; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22); transition: transform 0.15s; }
+.wa-float { position: fixed; right: 18px; bottom: calc(84px + env(safe-area-inset-bottom)); z-index: 60; display: flex; align-items: center; gap: 0.5rem; background: #1fa855; color: #fff; text-decoration: none; font-weight: 800; border-radius: 999px; padding: 0.7rem 1.1rem 0.7rem 0.8rem; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22); transition: transform 0.15s; }
 .wa-float:hover { transform: translateY(-2px); }
 @media (max-width: 640px) {
   .wa-float { padding: 0.8rem; }
