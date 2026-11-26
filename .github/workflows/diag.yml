@@ -1,0 +1,21 @@
+name: Diagnose backend CORS
+on:
+  push:
+    branches: [diag-cors]
+jobs:
+  cors:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Preflight and requests from each website address
+        run: |
+          API=https://veli-child-academy-production.up.railway.app/api
+          for ORIGIN in https://veli-child-academy-website.sphesihle7910.workers.dev https://veli-child-academy.netlify.app; do
+            echo "=================== Origin: $ORIGIN"
+            echo "--- OPTIONS /auth/login (preflight)"
+            curl -s -o /dev/null -D - -X OPTIONS "$API/auth/login" -H "Origin: $ORIGIN" -H "Access-Control-Request-Method: POST" -H "Access-Control-Request-Headers: content-type" | grep -iE "^HTTP|access-control|vary" || true
+            echo "--- POST /auth/login (wrong password, expect 401 + allow-origin)"
+            curl -s -D - -o /tmp/body -X POST "$API/auth/login" -H "Origin: $ORIGIN" -H "Content-Type: application/json" -d '{"username":"diag-check","password":"diag-check-123"}' | grep -iE "^HTTP|access-control" || true
+            cat /tmp/body; echo
+            echo "--- GET /announcements"
+            curl -s -o /dev/null -D - "$API/announcements" -H "Origin: $ORIGIN" | grep -iE "^HTTP|access-control" || true
+          done
