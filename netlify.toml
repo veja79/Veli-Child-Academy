@@ -6,3 +6,10 @@
 
 [build.environment]
   NODE_VERSION = "22"
+
+# Single-page app: serve index.html for page addresses like /register
+# (Cloudflare does the same via not_found_handling in frontend/wrangler.jsonc)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
