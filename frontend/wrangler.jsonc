@@ -2,7 +2,7 @@
 // Build settings live in the Cloudflare dashboard: root directory "frontend",
 // build command "npm install && npm run build", deploy command "npx wrangler deploy".
 {
-  "name": "veli-child-academy-website",
+  "name": "www",
   "compatibility_date": "2026-11-01",
   "assets": {
     "directory": "./dist",

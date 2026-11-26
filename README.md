@@ -81,7 +81,7 @@ Admin requests send `Authorization: Bearer <token>`.
 
 # Going live
 
-**Website: Cloudflare Workers (free, static assets).** The Worker `veli-child-academy-website` is connected
+**Website: Cloudflare Workers (free, static assets).** The Worker `www` (https://www.velichildacademy.workers.dev) is connected
 to this repo with root directory `frontend`, build command `npm install && npm run build` and deploy command
 `npx wrangler deploy` (set in the Cloudflare dashboard: Workers Builds ignores build steps in `wrangler.jsonc`). `frontend/wrangler.jsonc` serves `dist/` and sends page addresses like `/register`
 to `index.html`. Every merge into `main` goes live automatically.

@@ -2,7 +2,7 @@ import { defineConfig, loadEnv, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 
 /** Used when VITE_SITE_URL is not set (for example if a host ignores .env files). */
-const DEFAULT_SITE_URL = 'https://veli-child-academy-website.sphesihle7910.workers.dev';
+const DEFAULT_SITE_URL = 'https://www.velichildacademy.workers.dev';
 
 /** Public pages listed in sitemap.xml, with their priority. */
 const PAGES: [path: string, priority: string][] = [
