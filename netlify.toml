@@ -6,5 +6,3 @@
 
 [build.environment]
   NODE_VERSION = "22"
-  # Spring Boot backend on Railway (news, contact messages, admin login)
-  VITE_API_BASE = "https://veli-child-academy-production.up.railway.app/api"
