@@ -44,6 +44,7 @@ jobs:
           grep -q "<loc>$SITE/register</loc>" dist/sitemap.xml
           grep -q "Sitemap: $SITE/sitemap.xml" dist/robots.txt
           grep -q "up.railway.app/api" dist/assets/*.js
+          test ! -f dist/_redirects  # Cloudflare rejects the Netlify-style SPA rule
       - name: Build still correct if the host ignores .env files
         run: |
           mv .env.production /tmp/env.production
