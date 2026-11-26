@@ -1,0 +1,10 @@
+// Cloudflare Workers settings for the public website (static files only, no server code).
+{
+  "name": "veli-child-academy-website",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./dist",
+    // Serve index.html for page addresses like /register so direct links and refreshes work
+    "not_found_handling": "single-page-application"
+  }
+}

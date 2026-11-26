@@ -1,6 +1,6 @@
 import type { Announcement } from '../types/announcement';
+import { API_BASE } from '../config';
 
-const API_BASE = import.meta.env.VITE_API_BASE ?? '/api';
 
 /**
  * Sample data shown until the Spring Boot backend is running.

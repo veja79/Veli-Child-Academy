@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_BASE ?? '/api';
+import { API_BASE } from '../config';
 
 export interface ApplicationForm {
   childFirstName: string;
