@@ -18,12 +18,13 @@ const SAMPLE: Announcement[] = [
   },
   {
     id: 2,
-    title: 'Ivory Park Family Fun Day 2026',
-    summary: 'Saturday 5 December 2026 at Mhlangu Sports Ground, Ema 7. Tickets from R70.',
-    body: 'Veli Child Academy and SHEBBA Media present the 4th annual Ivory Park Family Fun Day on Saturday 5 December 2026 at Mhlangu Sports Ground, Ema 7 (Bidebaggeme Rd, Ivory Park). Tickets: kids R80, adults R70, family combo of 2 adults and 1 child R170, 2 adults and 2 kids R200. Includes an indigenous games tournament (registration R50). Pre-order on +27 60 666 2087 and bring your camp chairs and umbrellas.',
+    title: 'Ivory Park Family Fun Day moved to Saturday 5 December',
+    summary:
+      'The Ivory Park Family Fun Day has moved from 24 November to Saturday 5 December 2026 at Mhlangu Sports Ground, Ema 7, so our matric learners can join us after their exams. Tickets from R70.',
+    body: 'Please note that the 4th annual Ivory Park Family Fun Day, presented by Veli Child Academy and SHEBBA Media, has been moved from the previously communicated date of 24 November 2026 to Saturday 5 December 2026. We moved the date because our matric learners were still writing their final exams. They finished this week, so now everyone can celebrate together. Congratulations to all our matriculants! Venue: Mhlangu Sports Ground, Ema 7 (Bidebaggeme Rd, Ivory Park, Johannesburg). Tickets: kids R80, adults R70. Family combo of 2 adults and 1 child R170, or 2 adults and 2 kids R200. The indigenous games tournament is on, with a R50 registration fee and prizes of R500, R200 and R100. Tickets already bought stay valid for the new date. To pre-order, call +27 60 666 2087. Bring your camp chairs and umbrellas!',
     category: 'EVENT',
-    publishedAt: '2026-11-24',
-    pinned: false,
+    publishedAt: '2026-11-26',
+    pinned: true,
     imageUrl: '/images/family-fun-day-2026.jpg',
   },
   {
